@@ -1,13 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Bootcamp_Class1
+name: BootCam2020
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
 on:
   push:
     branches: [ master ]
- 
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -21,16 +20,13 @@ jobs:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
 
-    # Runs a single command using the runners shell
-    - name: Installing Node
-      uses: actions/setups-node@v2-beta
+   # Runs a single command using the runners shell
+    - name: Install NodeJS
+      uses: actions/setup-node@v2-beta
       with:
         node-version: 12
+    - name: Install Surge 
+      run: npm install -g surge
+    - name: Run Surge
+      run: surge ./ http://zubairafzalclass1.surge.sh --token ${{secrets.SURGETOKEN1}}
 
-    # Runs a set of commands using the runners shell
-    - name: Installing surge
-      run: npm install --global surge
-    - name: deploying uing  surge
-      run : surge ./ http://zubairafzalclass1.surge.sh --token ${{secrets.SURGETOKEN1}}
-      
-        
